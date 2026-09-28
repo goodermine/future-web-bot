@@ -50,6 +50,26 @@ python database.py --load data/scored.json
 python analytics.py --plot reports/tension.png --csv reports/daily.csv
 ```
 
+## Windows: set up and run every hour
+
+All of these are in the `windows` folder. Double-click them in File Explorer.
+
+1. **Install Python 3.10 or newer** from python.org. On the first installer screen, tick
+   **"Add python.exe to PATH"**.
+2. **Double-click `setup.bat`** (once). It installs everything into a private `.venv` folder,
+   runs the demo and opens the demo chart.
+3. **Double-click `run_now.bat`** to do one real run and check that it works.
+4. **Double-click `schedule_hourly.bat`** to have Windows run the bot every hour while you're
+   logged in. A console window flashes briefly each time it runs.
+
+After that:
+
+- `show_results.bat` re-analyses everything collected so far and opens the chart.
+- `remove_schedule.bat` stops the hourly runs. Your collected data is kept.
+- Each run's output is added to `logs\webbot.log`.
+- To use Claude for scoring, open Command Prompt and run
+  `setx ANTHROPIC_API_KEY "your-key-here"` once. Scheduled runs started after that pick it up.
+
 ## Design notes
 
 - **Token control (handoff §5.3).** Every packet gets the free lexical score first. Only packets whose
